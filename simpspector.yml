@@ -1,0 +1,15 @@
+composer: ~
+phpcs:
+  files: .
+  standards: [PSR1, PSR2]
+function_blacklist:
+  files: .
+  blacklist:
+    die: notice
+    echo: notice
+    var_dump: error
+comment_blacklist:
+  files: .
+  blacklist:
+    todo: notice
+    "dont commit": error

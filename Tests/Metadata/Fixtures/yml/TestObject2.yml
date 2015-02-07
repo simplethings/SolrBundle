@@ -1,0 +1,6 @@
+SimpleThings\Bundle\SolrBundle\Tests\Metadata\Fixtures\TestObject2:
+  type: embeddedDocument
+  fields:
+    name:
+      type: string
+      full_text: true

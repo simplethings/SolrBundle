@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="simplethings.solr.type_registry" class="SimpleThings\Bundle\SolrBundle\Search\Type\TypeRegistry"/>
+
+        <service id="simplethings.solr.schema_generator"
+                 class="SimpleThings\Bundle\SolrBundle\Search\SchemaGenerator">
+            <argument type="service" id="simplethings.solr.type_registry"/>
+            <argument type="service" id="simplethings.solr.metadata"/>
+        </service>
+
+        <service id="simplethings.solr.search_manager"
+                 class="SimpleThings\Bundle\SolrBundle\Search\SearchManager">
+            <argument type="service" id="solarium.client"/>
+            <argument type="service" id="simplethings.solr.document_persister"/>
+        </service>
+
+        <service id="simplethings.solr.document_persister"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Persister\DocumentPersister"
+                 public="false">
+            <argument type="service" id="simplethings.solr.metadata"/>
+            <argument type="service" id="simplethings.solr.type_registry"/>
+        </service>
+
+        <!-- Types -->
+        <service id="simplethings.solr.type.string_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\StringType">
+            <tag name="simplethings.solr.type" alias="string"/>
+        </service>
+        <service id="simplethings.solr.type.text_spell_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\TextSpellType">
+            <tag name="simplethings.solr.type" alias="textSpell"/>
+        </service>
+        <service id="simplethings.solr.type.html_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\HTMLType">
+            <tag name="simplethings.solr.type" alias="html"/>
+        </service>
+        <service id="simplethings.solr.type.id_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\IdType">
+            <tag name="simplethings.solr.type" alias="id"/>
+        </service>
+        <service id="simplethings.solr.type.integer_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\IntegerType">
+            <tag name="simplethings.solr.type" alias="integer"/>
+        </service>
+        <service id="simplethings.solr.type.float_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\FloatType">
+            <tag name="simplethings.solr.type" alias="float"/>
+        </service>
+        <service id="simplethings.solr.type.date_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\DateType">
+            <tag name="simplethings.solr.type" alias="date"/>
+        </service>
+        <service id="simplethings.solr.type.embedded_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\EmbeddedType">
+            <tag name="simplethings.solr.type" alias="embedded"/>
+        </service>
+        <service id="simplethings.solr.type.collection_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\CollectionType">
+            <tag name="simplethings.solr.type" alias="collection"/>
+        </service>
+    </services>
+
+</container>

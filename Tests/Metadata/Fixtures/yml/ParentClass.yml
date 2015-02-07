@@ -1,0 +1,4 @@
+SimpleThings\Bundle\SolrBundle\Tests\Metadata\Fixtures\ParentClass:
+  type: embeddedDocument
+  fields:
+    parent: string

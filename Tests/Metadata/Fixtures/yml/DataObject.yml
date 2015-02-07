@@ -1,0 +1,9 @@
+SimpleThings\Bundle\SolrBundle\Tests\Metadata\Fixtures\DataObject:
+  type: document
+  fields:
+    name:
+      type: string
+      full_text: true
+    collection:
+        type: collection
+        class: SimpleThings\Bundle\SolrBundle\Tests\Metadata\Fixtures\TestObject
