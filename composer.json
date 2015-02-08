@@ -1,7 +1,8 @@
 {
     "name": "simplethings/solr-bundle",
+    "license": "MIT",
     "description": "Solr Bundle",
-    "keywords": ["solr"],
+    "keywords": ["solr","schema"],
     "type": "symfony-bundle",
     "authors": [
         {
