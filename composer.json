@@ -12,9 +12,9 @@
     ],
     "require": {
         "php": ">=5.4",
-        "symfony/framework-bundle": "~2.1",
-        "symfony/console": "~2.1",
-        "symfony/property-access": "~2.2",
+        "symfony/framework-bundle": "~2.3",
+        "symfony/console": "~2.3",
+        "symfony/property-access": "~2.3",
         "nelmio/solarium-bundle": "~2.0",
         "jms/metadata": "~1.5"
     },
