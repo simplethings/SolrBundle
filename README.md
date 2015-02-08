@@ -1,6 +1,7 @@
 SimpleThingsSolrBundle
 ======================
 
+[![Build Status](https://travis-ci.org/simplethings/SolrBundle.svg?branch=master)](https://travis-ci.org/simplethings/SolrBundle)
 
 Installing
 ==========
