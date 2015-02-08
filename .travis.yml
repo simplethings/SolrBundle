@@ -4,15 +4,20 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - hhvm
 
-matrix:
-  include:
-    - php: 5.4
-      env: dependencies=lowest
+env:
+    matrix:
+      - PREFER_LOWEST="--prefer-lowest"
+      - PREFER_LOWEST=""
 
 before_script:
-  - composer install -n
-  - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --prefer-stable -n; fi;
+    - composer self-update
+    - composer update --prefer-source $PREFER_LOWEST
+
+matrix:
+  allow_failures:
+    - php: hhvm
 
 script:
   - phpunit
