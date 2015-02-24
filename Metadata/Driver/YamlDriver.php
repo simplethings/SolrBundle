@@ -65,37 +65,40 @@ class YamlDriver extends AbstractFileDriver
                 continue;
             }
 
-            $pName                      = $property->getName();
+            $pName = $property->getName();
+
             $propertiesMetadata[$pName] = new PropertyMetadata($name, $pName);
         }
 
         foreach ($propertiesMetadata as $pName => $pMetadata) {
-            if (isset($config['fields'][$pName])) {
-                $pConfig = $config['fields'][$pName];
+            if (! isset($config['fields'][$pName])) {
+                continue;
+            }
 
-                if (is_array($pConfig)) {
-                    if (isset($pConfig['type'])) {
-                        $pMetadata->type = $pConfig['type'];
-                        unset($pConfig['type']);
-                    }
+            $pConfig = $config['fields'][$pName];
 
-                    if (isset($pConfig['path'])) {
-                        $pMetadata->path = $pConfig['path'];
-                        unset($pConfig['path']);
-                    }
-
-                    if (isset($pConfig['full_text'])) {
-                        $pMetadata->fullText = $pConfig['full_text'];
-                        unset($pConfig['full_text']);
-                    }
-
-                    $pMetadata->params = $pConfig;
-                } else {
-                    $pMetadata->type = $pConfig;
+            if (is_array($pConfig)) {
+                if (isset($pConfig['type'])) {
+                    $pMetadata->type = $pConfig['type'];
+                    unset($pConfig['type']);
                 }
 
-                $metadata->addPropertyMetadata($pMetadata);
+                if (isset($pConfig['path'])) {
+                    $pMetadata->path = $pConfig['path'];
+                    unset($pConfig['path']);
+                }
+
+                if (isset($pConfig['mapped'])) {
+                    $pMetadata->mapped = $pConfig['mapped'];
+                    unset($pConfig['mapped']);
+                }
+
+                $pMetadata->params = $pConfig;
+            } else {
+                $pMetadata->type = $pConfig;
             }
+
+            $metadata->addPropertyMetadata($pMetadata);
         }
 
         return $metadata;

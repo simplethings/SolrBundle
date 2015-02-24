@@ -5,7 +5,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="simplethings.solr.type_registry" class="SimpleThings\Bundle\SolrBundle\Search\Type\TypeRegistry"/>
+        <service id="simplethings.solr.type_registry"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\TypeRegistry"/>
 
         <service id="simplethings.solr.schema_generator"
                  class="SimpleThings\Bundle\SolrBundle\Search\SchemaGenerator">
@@ -20,7 +21,7 @@
         </service>
 
         <service id="simplethings.solr.document_persister"
-                 class="SimpleThings\Bundle\SolrBundle\Search\Persister\DocumentPersister"
+                 class="SimpleThings\Bundle\SolrBundle\Search\DocumentPersister"
                  public="false">
             <argument type="service" id="simplethings.solr.metadata"/>
             <argument type="service" id="simplethings.solr.type_registry"/>

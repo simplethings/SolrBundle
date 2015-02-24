@@ -18,9 +18,6 @@ class SchemaField
     private $name;
 
     /** @var bool */
-    private $fullText = false;
-
-    /** @var bool */
     private $indexed = true;
 
     /** @var bool */
@@ -34,6 +31,9 @@ class SchemaField
 
     /** @var bool */
     private $required = false;
+
+    /** @var array */
+    private $copy = array();
 
     /**
      * @param string $name
@@ -56,22 +56,6 @@ class SchemaField
             'multiValued' => $this->multiValued,
             'required'    => $this->required
         );
-    }
-
-    /**
-     * @param boolean $fullText
-     */
-    public function setFullText($fullText)
-    {
-        $this->fullText = $fullText;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getFullText()
-    {
-        return $this->fullText;
     }
 
     /**
@@ -128,5 +112,21 @@ class SchemaField
     public function setMultiValued($multiValued)
     {
         $this->multiValued = $multiValued;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCopy()
+    {
+        return $this->copy;
+    }
+
+    /**
+     * @param array $copy
+     */
+    public function setCopy(array $copy)
+    {
+        $this->copy = $copy;
     }
 }

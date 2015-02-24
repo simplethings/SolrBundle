@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleThings\Bundle\SolrBundle\Tests\Metadata\Fixtures;
+namespace SimpleThings\Bundle\SolrBundle\Tests\Fixtures;
 
 class DataObject extends ParentClass
 {
@@ -15,6 +15,9 @@ class DataObject extends ParentClass
 
     /** @var TestObject[] */
     public $collection = array();
+
+    /** @var string */
+    public $fulltext;
 
     public function __construct($name)
     {

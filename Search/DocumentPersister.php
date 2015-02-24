@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SimpleThings\Bundle\SolrBundle\Search\Persister;
+namespace SimpleThings\Bundle\SolrBundle\Search;
 
 use Metadata\MetadataFactory;
 use SimpleThings\Bundle\SolrBundle\Metadata\ClassMetadata;
@@ -48,6 +48,10 @@ class DocumentPersister
         $metadata = $this->metadata->getMetadataForClass($class);
 
         foreach ($metadata->propertyMetadata as $field) {
+            if (false === $field->mapped) {
+                continue;
+            }
+
             $name  = $prefix . $field->name;
             $value = $this->getValue($object, $field);
 
@@ -69,17 +73,6 @@ class DocumentPersister
                 $this->addField($document, $value, $field, $name);
             }
         }
-    }
-
-    /**
-     * @param PropertyMetadata $field
-     * @param                  $value
-     *
-     * @return mixed
-     */
-    private function convertValue(PropertyMetadata $field, $value)
-    {
-        return $this->typeRegistry->getType($field->type)->convertValue($value);
     }
 
     /**
@@ -124,5 +117,16 @@ class DocumentPersister
         } else {
             $document->addField($name, $this->convertValue($field, $value));
         }
+    }
+
+    /**
+     * @param PropertyMetadata $field
+     * @param                  $value
+     *
+     * @return mixed
+     */
+    private function convertValue(PropertyMetadata $field, $value)
+    {
+        return $this->typeRegistry->getType($field->type)->convertValue($value);
     }
 } 

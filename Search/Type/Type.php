@@ -33,7 +33,11 @@ abstract class Type
      */
     public function prepareForSchema(PropertyMetadata $metadata, SchemaField $schema)
     {
-        $schema->setFullText($metadata->fullText);
-        $schema->setType('string');
+        $schema->setCopy($metadata->get('copy') ?: array());
+        $schema->setIndexed($metadata->get('indexed') ?: true);
+        $schema->setMultiValued($metadata->get('multiValued') ?: false);
+        $schema->setRequired($metadata->get('required') ?: false);
+        $schema->setStored($metadata->get('stored') ?: true);
+        $schema->setType($metadata->get('type') ?: 'string');
     }
 }
