@@ -22,9 +22,6 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /** @var Fixtures\DataObject */
     protected $dataObject;
 
-    /** @var DocumentPersister */
-    protected $documentPersister;
-
     /** @var MetadataFactory */
     protected $metadata;
 
@@ -55,7 +52,5 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             ->addType(new Type\CollectionType(), 'collection')
             ->addType(new Type\EmbeddedType(), 'embedded')
             ->addType(new Type\TextSpellType(), 'textSpell');
-
-        $this->documentPersister = new DocumentPersister($this->metadata, $this->typeRegistry);
     }
 }
