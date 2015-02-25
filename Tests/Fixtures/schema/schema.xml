@@ -4,7 +4,7 @@
  <field name="name" type="string" indexed="true" stored="true" multiValued="false" required="false"/>
  <field name="collection_collection_name" type="string" indexed="true" stored="true" multiValued="true" required="false"/>
  <field name="collection_collection_embedded_embedded_name" type="string" indexed="true" stored="true" multiValued="true" required="false"/>
- <field name="fulltext" type="textSpell" indexed="true" stored="true" multiValued="true"/>
+ <field name="fulltext" type="textSpell" indexed="true" stored="true" multiValued="true" required="false"/>
  <copyField source="name" dest="fulltext"/>
  <copyField source="collection_collection_name" dest="fulltext"/>
  <copyField source="collection_collection_embedded_embedded_name" dest="fulltext"/>

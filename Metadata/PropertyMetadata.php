@@ -28,7 +28,7 @@ class PropertyMetadata extends BasePropertyMetadata
     public $path;
 
     /** @var bool */
-    public $fullText;
+    public $mapped;
 
     /** @var array */
     public $params;

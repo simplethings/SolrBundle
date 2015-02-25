@@ -31,7 +31,7 @@ class SchemaGenerator
     private $fields = array();
 
     /** @var array|SchemaField[] */
-    private $fullTextFields = array();
+    private $copyFields = array();
 
     /**
      * @param Type\TypeRegistry $typeRegistry
@@ -62,7 +62,7 @@ class SchemaGenerator
         }
 
         $this->addSchemaFields($writer, $this->fields);
-        $this->addFullText($writer, $this->fullTextFields);
+        $this->addCopyFields($writer, $this->copyFields);
 
         $writer->endElement();
         $writer->endDocument();
@@ -75,29 +75,16 @@ class SchemaGenerator
      * @param \XMLWriter    $writer
      * @param SchemaField[] $fields
      */
-    protected function addFullText(\XMLWriter $writer, array $fields)
+    protected function addCopyFields(\XMLWriter $writer, array $fields)
     {
-        $this->addElement(
-            $writer,
-            'field',
-            null,
-            array(
-                'name'        => 'fulltext',
-                'type'        => 'textSpell',
-                'indexed'     => true,
-                'stored'      => true,
-                'multiValued' => true
-            )
-        );
-
         foreach ($fields as $field) {
             $this->addElement(
                 $writer,
                 'copyField',
                 null,
                 array(
-                    'source' => $field->getName(),
-                    'dest'   => 'fulltext'
+                    'source' => $field['source'],
+                    'dest'   => $field['destination']
                 )
             );
         }
@@ -184,8 +171,11 @@ class SchemaGenerator
 
                 $this->fields[$name] = $schemaField;
 
-                if ($schemaField->getFullText()) {
-                    $this->fullTextFields[$name] = $schemaField;
+                foreach ($schemaField->getCopy() as $copyFieldDestination) {
+                    $this->copyFields[] = array(
+                        'source'      => $name,
+                        'destination' => $copyFieldDestination
+                    );
                 }
             }
         }

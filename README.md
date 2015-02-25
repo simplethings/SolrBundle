@@ -39,8 +39,14 @@ Acme\Bundle\AcmeBundle\Entity\Blog:
     id: id
     name: 
       type: text
-      full_text: true
+      copy:
+        - fulltext
     text:
       type: textSpell
-      full_text: true
+      copy:
+        - fulltext
+    fulltext:
+      type: textSpell
+      mapped: false
+      multiValued: true
 ```

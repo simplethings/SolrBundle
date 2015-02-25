@@ -1,0 +1,10 @@
+SimpleThings\Bundle\SolrBundle\Tests\Fixtures\TestObject:
+  type: embeddedDocument
+  fields:
+    name:
+      type: string
+      copy:
+        - fulltext
+    embedded:
+      type: embedded
+      class: SimpleThings\Bundle\SolrBundle\Tests\Fixtures\TestObject2

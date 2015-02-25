@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleThings\Bundle\SolrBundle\Tests\Metadata\Fixtures;
+namespace SimpleThings\Bundle\SolrBundle\Tests\Fixtures;
 
 class TestObject2
 {

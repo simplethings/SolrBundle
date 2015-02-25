@@ -1,0 +1,14 @@
+SimpleThings\Bundle\SolrBundle\Tests\Fixtures\DataObject:
+  type: document
+  fields:
+    name:
+      type: string
+      copy:
+        - fulltext
+    collection:
+        type: collection
+        class: SimpleThings\Bundle\SolrBundle\Tests\Fixtures\TestObject
+    fulltext:
+      type: textSpell
+      mapped: false
+      multiValued: true

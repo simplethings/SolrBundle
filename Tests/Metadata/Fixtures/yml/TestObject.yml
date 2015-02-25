@@ -1,9 +1,0 @@
-SimpleThings\Bundle\SolrBundle\Tests\Metadata\Fixtures\TestObject:
-  type: embeddedDocument
-  fields:
-    name:
-      type: string
-      full_text: true
-    embedded:
-      type: embedded
-      class: SimpleThings\Bundle\SolrBundle\Tests\Metadata\Fixtures\TestObject2
