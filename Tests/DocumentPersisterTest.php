@@ -9,6 +9,8 @@
 
 namespace SimpleThings\Bundle\SolrBundle\Tests;
 
+use SimpleThings\Bundle\SolrBundle\Search\DocumentPersister;
+
 class DocumentPersisterTest extends TestCase
 {
     public function testCreate()
