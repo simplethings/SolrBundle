@@ -13,7 +13,9 @@ class DocumentPersisterTest extends TestCase
 {
     public function testCreate()
     {
-        $document = $this->documentPersister->prepare($this->dataObject);
+        $documentPersister = new DocumentPersister($this->metadata, $this->typeRegistry);
+
+        $document = $documentPersister->prepare($this->dataObject);
         $fields   = $document->getFields();
 
         $this->assertArrayNotHasKey('fulltext', $fields);
