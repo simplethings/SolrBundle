@@ -13,7 +13,6 @@ use Metadata\Driver\DriverChain;
 use Metadata\Driver\FileLocator;
 use Metadata\MetadataFactory;
 use SimpleThings\Bundle\SolrBundle\Metadata\Driver\YamlDriver;
-use SimpleThings\Bundle\SolrBundle\Search\DocumentPersister;
 use SimpleThings\Bundle\SolrBundle\Search\Type;
 use SimpleThings\Bundle\SolrBundle\Tests\Fixtures;
 
