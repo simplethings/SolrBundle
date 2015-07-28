@@ -18,6 +18,7 @@
                  class="SimpleThings\Bundle\SolrBundle\Search\SearchManager">
             <argument type="service" id="solarium.client"/>
             <argument type="service" id="simplethings.solr.document_persister"/>
+            <argument type="service" id="simplethings.solr.metadata"/>
         </service>
 
         <service id="simplethings.solr.document_persister"

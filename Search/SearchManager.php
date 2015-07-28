@@ -9,6 +9,7 @@
 
 namespace SimpleThings\Bundle\SolrBundle\Search;
 
+use Metadata\MetadataFactory;
 use Solarium\Client;
 use Solarium\Core\Query\QueryInterface;
 
@@ -29,9 +30,9 @@ class SearchManager
      * @param \Solarium\Client  $client
      * @param DocumentPersister $persister
      */
-    public function __construct(Client $client, DocumentPersister $persister)
+    public function __construct(Client $client, DocumentPersister $persister, MetadataFactory $metadataFactory)
     {
-        $this->unitOfWork = new UnitOfWork($client, $persister);
+        $this->unitOfWork = new UnitOfWork($client, $persister, $metadataFactory);
     }
 
     /**

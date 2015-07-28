@@ -9,8 +9,10 @@
 
 namespace SimpleThings\Bundle\SolrBundle\Search;
 
+use Metadata\MetadataFactory;
 use Solarium\Client;
 use Solarium\Core\Query\QueryInterface;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * @author Simon Mönch <moench@simplethings.de>
@@ -49,14 +51,25 @@ class UnitOfWork
     private $updateDocuments = array();
 
     /**
+     * @var MetadataFactory
+     */
+    private $metadataFactory;
+
+    /** @var \Symfony\Component\PropertyAccess\PropertyAccessor */
+    private $accessor;
+
+    /**
      *
      * @param \Solarium\Client  $client
      * @param DocumentPersister $persister
+     * @param MetadataFactory   $metadataFactory
      */
-    public function __construct(Client $client, DocumentPersister $persister)
+    public function __construct(Client $client, DocumentPersister $persister, MetadataFactory $metadataFactory)
     {
-        $this->client    = $client;
-        $this->persister = $persister;
+        $this->client          = $client;
+        $this->persister       = $persister;
+        $this->metadataFactory = $metadataFactory;
+        $this->accessor        = PropertyAccess::createPropertyAccessor();
     }
 
     /**
@@ -76,7 +89,7 @@ class UnitOfWork
      */
     public function persist($object)
     {
-        $this->persistDocuments[$object->getId()] = $this->persister->prepare($object);
+        $this->persistDocuments[$this->getId($object)] = $this->persister->prepare($object);
 
         return $this;
     }
@@ -88,7 +101,7 @@ class UnitOfWork
      */
     public function update($object)
     {
-        $this->updateDocuments[$object->getId()] = $this->persister->prepare($object);
+        $this->updateDocuments[$this->getId($object)] = $this->persister->prepare($object);
 
         return $this;
     }
@@ -100,7 +113,7 @@ class UnitOfWork
      */
     public function remove($object)
     {
-        $id                         = $object->getId();
+        $id                         = $this->getId($object);
         $this->removeDocuments[$id] = $id;
 
         return $this;
@@ -149,5 +162,25 @@ class UnitOfWork
     public function createSelect()
     {
         return $this->client->createSelect();
+    }
+
+    private function getId($object)
+    {
+        $id       = null;
+        $class    = (new \ReflectionClass($object))->getName();
+        $metadata = $this->metadataFactory->getMetadataForClass($class);
+
+        foreach ($metadata->propertyMetadata as $propertyMetadata) {
+            if ($propertyMetadata->type == 'id') {
+                $id = $propertyMetadata->class . '_' . $this->accessor->getValue($object, $propertyMetadata->name);
+                break;
+            }
+        }
+
+        if (null === $id) {
+            throw new \RuntimeException(sprintf('class "%s" has no field declared as "id"', $class));
+        }
+
+        return $id;
     }
 } 
