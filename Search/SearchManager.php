@@ -9,7 +9,6 @@
 
 namespace SimpleThings\Bundle\SolrBundle\Search;
 
-use SimpleThings\Bundle\SolrBundle\Search\Persister\DocumentPersister;
 use Solarium\Client;
 use Solarium\Core\Query\QueryInterface;
 
@@ -27,8 +26,8 @@ class SearchManager
 
     /**
      *
-     * @param \Solarium\Client            $client
-     * @param Persister\DocumentPersister $persister
+     * @param \Solarium\Client  $client
+     * @param DocumentPersister $persister
      */
     public function __construct(Client $client, DocumentPersister $persister)
     {

@@ -9,7 +9,6 @@
 
 namespace SimpleThings\Bundle\SolrBundle\Search;
 
-use SimpleThings\Bundle\SolrBundle\Search\Persister\DocumentPersister;
 use Solarium\Client;
 use Solarium\Core\Query\QueryInterface;
 
