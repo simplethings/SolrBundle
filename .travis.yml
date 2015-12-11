@@ -22,4 +22,4 @@ matrix:
     - php: 7.0
 
 script:
-  - phpunit
+  - vendor/bin/phpunit
