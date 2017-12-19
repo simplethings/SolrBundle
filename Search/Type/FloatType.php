@@ -19,7 +19,7 @@ class FloatType extends Type
 {
     public function convertValue($value)
     {
-        return floatval($value);
+        return (float)$value;
     }
 
     public function prepareForSchema(PropertyMetadata $metadata, SchemaField $schema)

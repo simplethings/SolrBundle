@@ -24,7 +24,7 @@ class IntegerType extends Type
      */
     public function convertValue($value)
     {
-        return intval($value);
+        return (int)$value;
     }
 
     /**

@@ -24,7 +24,7 @@ class BooleanType extends Type
      */
     public function convertValue($value)
     {
-        return boolval($value);
+        return (bool)$value;
     }
 
     /**
