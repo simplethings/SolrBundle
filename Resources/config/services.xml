@@ -49,6 +49,10 @@
                  class="SimpleThings\Bundle\SolrBundle\Search\Type\IntegerType">
             <tag name="simplethings.solr.type" alias="integer"/>
         </service>
+        <service id="simplethings.solr.type.boolean_type"
+                 class="SimpleThings\Bundle\SolrBundle\Search\Type\BooleanType">
+            <tag name="simplethings.solr.type" alias="boolean"/>
+        </service>
         <service id="simplethings.solr.type.float_type"
                  class="SimpleThings\Bundle\SolrBundle\Search\Type\FloatType">
             <tag name="simplethings.solr.type" alias="float"/>

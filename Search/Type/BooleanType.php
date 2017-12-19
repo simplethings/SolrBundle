@@ -13,18 +13,18 @@ use SimpleThings\Bundle\SolrBundle\Metadata\PropertyMetadata;
 use SimpleThings\Bundle\SolrBundle\Search\Field\SchemaField;
 
 /**
- * @author Simon Mönch <moench@simplethings.de>
+ * @author Tobias Gödderz <tg@simplethings.de>
  */
-class IntegerType extends Type
+class BooleanType extends Type
 {
     /**
      * @param mixed $value
      *
-     * @return int
+     * @return bool
      */
     public function convertValue($value)
     {
-        return (int)$value;
+        return (bool)$value;
     }
 
     /**
@@ -35,6 +35,6 @@ class IntegerType extends Type
     {
         parent::prepareForSchema($metadata, $schema);
 
-        $schema->setType('integer');
+        $schema->setType('boolean');
     }
 }
